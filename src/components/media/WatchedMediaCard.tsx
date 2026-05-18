@@ -1,13 +1,16 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { useMemo } from "react";
+
 import { getProgressPercentage, useProgressStore } from "@/stores/progress";
 import {
   ShowProgressResult,
   shouldShowProgress,
 } from "@/stores/progress/utils";
 import { MediaItem } from "@/utils/mediaTypes";
+
 import { MediaCard } from "./MediaCard";
+
 function formatSeries(series?: ShowProgressResult | null) {
   if (!series || !series.episode || !series.season) return undefined;
   return {
@@ -17,6 +20,7 @@ function formatSeries(series?: ShowProgressResult | null) {
     seasonId: series.season?.id,
   };
 }
+
 export interface WatchedMediaCardProps {
   media: MediaItem;
   closable?: boolean;
@@ -25,6 +29,7 @@ export interface WatchedMediaCardProps {
   editable?: boolean;
   onEdit?: (e?: React.MouseEvent) => void;
 }
+
 export function WatchedMediaCard(props: WatchedMediaCardProps) {
   const progressItems = useProgressStore((s) => s.items);
   const item = useMemo(() => {
